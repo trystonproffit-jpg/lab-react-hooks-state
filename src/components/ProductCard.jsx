@@ -1,17 +1,26 @@
 import React from 'react'
 import styles from '../styles/ProductCard.module.css'
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, addToCart }) => {
   return (
     <div
-      className={`${styles.card} ${!product.inStock ? styles.outOfStock : ''}`}
+      style={{
+        border: '1px solid gray',
+        padding: '0.5rem',
+        marginBottom: '0.5rem',
+        opacity: product.inStock ? 1 : 0.5,
+      }}
     >
-      <h3>{product.name}</h3>
-      <p>Price: {product.price}</p>
-      <p>Status: {product.inStock ? 'In Stock' : 'Out of Stock'}</p>
-
-      {/* TODO: Implement Add to Cart button functionality */}
-      <button data-testid={'product-' + product.id}>Add to Cart</button>
+      <strong>{product.name}</strong> ({product.category}) - {product.price}
+      <button
+        style={{ marginLeft: '1rem '}}
+        onClick={() => addToCart(product)}
+        disabled={!product.inStock}
+        data-testid={'product-' + product.id}
+      >
+        Add To Cart
+      </button>
+      {!product.inStock && <span style={{ marginLeft: '0.5rem' }}>Out of Stock</span>}
     </div>
   )
 }
