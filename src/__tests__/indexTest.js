@@ -1,4 +1,5 @@
 import React from 'react'
+import { test, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import App from '../App'
 import { sampleProducts } from '../components/ProductList'
